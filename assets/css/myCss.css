@@ -1,0 +1,42 @@
+h1,a,h2{
+    color: aqua;
+    font-family: "Arial Narrow";
+    font-size: 18px;
+    text-indent: 10px;
+    text-shadow: 5px 5px 5px  coral;
+}
+
+body{
+    color: aquamarine;
+}
+
+li strong{
+    color: red;
+}
+
+strong{
+    color: blue;
+    text-transform: capitalize;
+    text-shadow: 5px 5px 5px  coral;
+    font-family: fantasy;
+}
+#mypid{
+    color: blueviolet;
+}
+
+.pclass{
+    color: crimson;
+}
+
+[title=ptitle]{
+    color: white;
+    background-image: url("../../assets/image/panda.ico");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    padding: 10px;
+}
+p{
+    width: 100px;
+    text-wrap: normal;
+}

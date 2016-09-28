@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cabvas标签</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+    <meta name="render" content="webkit">
+    <link rel="icon" href="../../assets/image/panda.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="../../assets/image/panda.ico">
+</head>
+<body>
+
+</body>
+    <script type="text/javascript">
+        var CANVAS_WIDHT = 200,CANVAS_HEIGHT=200
+        var mycanvas,context
+        window.onload = function () {
+            createCanvas()
+            //drawRect()
+            drawImage()
+        }
+
+        function createCanvas() {
+            document.body.innerHTML = '<canvas id="mycanvas" width="500px" height="500px"></canvas>'
+            mycanvas = document.getElementById("mycanvas")
+            context = mycanvas.getContext("2d")
+        }
+        
+        function drawRect() {
+            context.fillStyle = "#FF0000"
+            context.translate(200,200)
+            context.scale(2,0.5)
+            context.fillRect(0,0,200,200)
+        }
+
+        function drawImage() {
+            var img = new Image()
+            img.onload =function () {
+                context.drawImage(img,0,0)
+            }
+            img.src = "../../assets/image/1.jpg"
+        }
+
+    </script>
+</html>

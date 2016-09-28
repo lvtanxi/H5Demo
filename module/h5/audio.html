@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>音频播放</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+    <meta name="render" content="webkit">
+    <link rel="icon" href="../../assets/image/panda.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="../../assets/image/panda.ico">
+</head>
+<body>
+    <button onclick="clickA()">播放/暂停</button><br/>
+    <audio src="../../assets/mp/半城烟沙.mp3" controls="controls">你的浏览器不支持</audio><br/>
+    <audio src="../../assets/mp/半城烟沙.mp3" id="audio">你的浏览器不支持</audio>
+</body>
+    <script type="text/javascript">
+        function clickA() {
+            var audio=document.getElementById("audio")
+            if(audio.paused){
+                audio.play()
+            }else{
+                audio.pause()
+            }
+        }
+    </script>
+</html>

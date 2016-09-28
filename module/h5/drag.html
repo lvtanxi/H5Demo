@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>拖放</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+    <meta name="render" content="webkit">
+    <link rel="icon" href="../../assets/image/panda.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="../../assets/image/panda.ico">
+    <style type="text/css">
+         .box{
+             width: 400px;
+             height: 400px;
+         }
+        #box1{
+            background-color: #cccccc;
+        }
+    </style>
+    <script type="text/javascript">
+        var boxDiv,img1
+        window.onload=function () {
+            boxDiv=document.getElementById("box1")
+            img1=document.getElementById("img1")
+           /* boxDiv.ondragenter = function (e) {
+                log(e);
+            }*/
+            boxDiv.ondragover=function (e) {
+                e.preventDefault()
+            }
+            boxDiv.ondrop=function (e) {
+                e.preventDefault()
+                var imag = document.getElementById(e.dataTransfer.getData("imgId"))
+                boxDiv.appendChild(imag)
+            }
+            img1.ondragstart=function (e) {
+                e.dataTransfer.setData("imgId","img1")
+            }
+        }
+        function log(obj) {
+            var s = ""
+            for(var k in obj){
+                s +=k+":"+obj[k]+"\n"
+            }
+            console.log(s);
+        }
+    </script>
+</head>
+<body>
+    <div id="box1" class="box"></div>
+    <img src="../../assets/image/0.jpg" id="img1"/>
+</body>
+    
+</html>

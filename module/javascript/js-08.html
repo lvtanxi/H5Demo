@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>js瀑布流</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+    <meta name="render" content="webkit">
+    <link rel="icon" href="../../assets/image/panda.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="../../assets/image/panda.ico">
+    <style type="text/css">
+         *{
+             margin: 0px;
+             padding: 0px;
+         }
+        #container{
+            position: relative;
+        }
+        .box{
+            padding: 5px;
+            float: left;
+        }
+        .box_img{
+            padding: 5px;
+            border: 1px solid #cccccc;
+            box-shadow: 0 0 5px #ccc;
+            border-radius: 5px;
+        }
+         .box_img img{
+             width: 150px;
+             height: auto;
+         }
+    </style>
+    <script type="text/javascript">
+        window.onload=function () {
+            imgaeLoaction("container","box")
+            var imgData={'data':[{'src':'1.jpg'},{'src':'2.jpg'},{'src':'3.jpg'},{'src':'4.jpg'}]};
+            window.onscroll=function () {
+                if (checkFlag()) {
+                    var cparent = document.getElementById("container")
+                    for(var i=0; i<imgData.data.length; i++){
+                        var ccontent=document.createElement("div")
+                        ccontent.className = "box"
+                        cparent.appendChild(ccontent)
+                        var boximg = document.createElement("div")
+                        boximg.className = "box_img"
+                        ccontent.appendChild(boximg)
+                        var img = document.createElement("img")
+                        img.src = "../../assets/image/"+imgData.data[i].src
+                        boximg.appendChild(img)
+                    }
+                    imgaeLoaction("container","box")
+                }
+            }
+        }
+        function checkFlag() {
+            var cparent = document.getElementById("container")
+            var ccontent=getChildElement(cparent,"box")
+            var lastContentHeight = ccontent[ccontent.length-1].offsetTop
+            var scrolltop = document.documentElement.scrollTop||document.body.scrollTop
+            var pageHeight = document.documentElement.clientHeight||document.body.clientHeight
+            return lastContentHeight<(scrolltop+pageHeight)
+        }
+
+        function imgaeLoaction(parent,content) {
+            var cparent = document.getElementById(parent)
+            var ccontent=getChildElement(cparent,content)
+            var imgWidth = ccontent[0].offsetWidth
+            var cols = Math.floor(document.documentElement.clientWidth / imgWidth)
+            cparent.style.cssText = "width:"+imgWidth*cols+"px;margin:0 auto"
+            var  boxHeightArr = []
+            ccontent.forEach(function (item,index) {
+                if(index<cols){
+                    boxHeightArr.push(item.offsetHeight)
+                }else{
+                    var minheight = Math.min.apply(null,boxHeightArr)
+                    var minIndex=getminheightLoaction(boxHeightArr,minheight)
+                    item.style.position = "absolute"
+                    item.style.top = minheight+"px"
+                    item.style.left =ccontent[minIndex].offsetLeft+"px"
+                    boxHeightArr[minIndex] = boxHeightArr[minIndex]+item.offsetHeight
+                }
+            })
+        }
+
+        function getChildElement(parent,content) {
+            var contentArr = []
+            var allContent =parent.getElementsByTagName("*")
+            for(var i=0;i<allContent.length;i++){
+                if(allContent[i].className==content)
+                    contentArr.push(allContent[i])
+            }
+            return contentArr
+        }
+
+        function getminheightLoaction(boxHeightArr,minheight) {
+            for(var index = 0;index<boxHeightArr.length;index++){
+                if(boxHeightArr[index]===minheight){
+                    return index
+                }
+            }
+        }
+
+    </script>
+</head>
+<body>
+    <div id="container">
+        <div class="box">
+            <div class="box_img">
+                <img src="../../assets/image/0.jpg">
+            </div>
+        </div>
+        <div class="box">
+            <div class="box_img">
+                <img src="../../assets/image/0.jpg">
+            </div>
+        </div>
+        <div class="box">
+            <div class="box_img">
+                <img src="../../assets/image/1.jpg">
+            </div>
+        </div>
+        <div class="box">
+            <div class="box_img">
+                <img src="../../assets/image/2.jpg">
+            </div>
+        </div>
+        <div class="box">
+            <div class="box_img">
+                <img src="../../assets/image/3.jpg">
+            </div>
+        </div>
+        <div class="box">
+            <div class="box_img">
+                <img src="../../assets/image/4.jpg">
+            </div>
+        </div>
+        <div class="box">
+            <div class="box_img">
+                <img src="../../assets/image/5.jpg">
+            </div>
+        </div>
+        <div class="box">
+            <div class="box_img">
+                <img src="../../assets/image/6.jpg">
+            </div>
+        </div>
+        <div class="box">
+            <div class="box_img">
+                <img src="../../assets/image/7.jpg">
+            </div>
+        </div>
+        <div class="box">
+            <div class="box_img">
+                <img src="../../assets/image/8.jpg">
+            </div>
+        </div>
+        <div class="box">
+            <div class="box_img">
+                <img src="../../assets/image/9.jpg">
+            </div>
+        </div>
+        <div class="box">
+            <div class="box_img">
+                <img src="../../assets/image/10.jpg">
+            </div>
+        </div>
+        <div class="box">
+            <div class="box_img">
+                <img src="../../assets/image/11.jpg">
+            </div>
+        </div>
+        <div class="box">
+            <div class="box_img">
+                <img src="../../assets/image/12.jpg">
+            </div>
+        </div>
+        <div class="box">
+            <div class="box_img">
+                <img src="../../assets/image/13.jpg">
+            </div>
+        </div>
+        <div class="box">
+            <div class="box_img">
+                <img src="../../assets/image/14.jpg">
+            </div>
+        </div>
+        <div class="box">
+            <div class="box_img">
+                <img src="../../assets/image/15.jpg">
+            </div>
+        </div>
+        <div class="box">
+            <div class="box_img">
+                <img src="../../assets/image/16.jpg">
+            </div>
+        </div>
+        <div class="box">
+            <div class="box_img">
+                <img src="../../assets/image/16.jpg">
+            </div>
+        </div>
+        <div class="box">
+            <div class="box_img">
+                <img src="../../assets/image/16.jpg">
+            </div>
+        </div>
+        <div class="box">
+            <div class="box_img">
+                <img src="../../assets/image/16.jpg">
+            </div>
+        </div>
+        <div class="box">
+            <div class="box_img">
+                <img src="../../assets/image/17.jpg">
+            </div>
+        </div>
+        <div class="box">
+            <div class="box_img">
+                <img src="../../assets/image/18.jpg">
+            </div>
+        </div>
+        <div class="box">
+            <div class="box_img">
+                <img src="../../assets/image/19.jpg">
+            </div>
+        </div>
+        <div class="box">
+            <div class="box_img">
+                <img src="../../assets/image/20.jpg">
+            </div>
+        </div>
+        <div class="box">
+            <div class="box_img">
+                <img src="../../assets/image/21.jpg">
+            </div>
+        </div>
+        <div class="box">
+            <div class="box_img">
+                <img src="../../assets/image/22.jpg">
+            </div>
+        </div>
+        <div class="box">
+            <div class="box_img">
+                <img src="../../assets/image/23.jpg">
+            </div>
+        </div>
+        <div class="box">
+            <div class="box_img">
+                <img src="../../assets/image/24.jpg">
+            </div>
+        </div>
+        <div class="box">
+            <div class="box_img">
+                <img src="../../assets/image/25.jpg">
+            </div>
+        </div>
+        <div class="box">
+            <div class="box_img">
+                <img src="../../assets/image/26.jpg">
+            </div>
+        </div>
+        <div class="box">
+            <div class="box_img">
+                <img src="../../assets/image/27.jpg">
+            </div>
+        </div>
+        <div class="box">
+            <div class="box_img">
+                <img src="../../assets/image/28.jpg">
+            </div>
+        </div>
+        <div class="box">
+            <div class="box_img">
+                <img src="../../assets/image/29.jpg">
+            </div>
+        </div>
+        <div class="box">
+            <div class="box_img">
+                <img src="../../assets/image/30.jpg">
+            </div>
+        </div>
+        <div class="box">
+            <div class="box_img">
+                <img src="../../assets/image/31.jpg">
+            </div>
+        </div>
+        <div class="box">
+            <div class="box_img">
+                <img src="../../assets/image/32.jpg">
+            </div>
+        </div>
+        <div class="box">
+            <div class="box_img">
+                <img src="../../assets/image/33.jpg">
+            </div>
+        </div>
+        <div class="box">
+            <div class="box_img">
+                <img src="../../assets/image/34.jpg">
+            </div>
+        </div>
+        <div class="box">
+            <div class="box_img">
+                <img src="../../assets/image/35.jpg">
+            </div>
+        </div>
+        <div class="box">
+            <div class="box_img">
+                <img src="../../assets/image/36.jpg">
+            </div>
+        </div>
+        <div class="box">
+            <div class="box_img">
+                <img src="../../assets/image/37.jpg">
+            </div>
+        </div>
+        <div class="box">
+            <div class="box_img">
+                <img src="../../assets/image/38.jpg">
+            </div>
+        </div>
+        <div class="box">
+            <div class="box_img">
+                <img src="../../assets/image/16.jpg">
+            </div>
+        </div>
+        <div class="box">
+            <div class="box_img">
+                <img src="../../assets/image/16.jpg">
+            </div>
+        </div>
+        <div class="box">
+            <div class="box_img">
+                <img src="../../assets/image/16.jpg">
+            </div>
+        </div>
+        <div class="box">
+            <div class="box_img">
+                <img src="../../assets/image/16.jpg">
+            </div>
+        </div>
+        <div class="box">
+            <div class="box_img">
+                <img src="../../assets/image/16.jpg">
+            </div>
+        </div>
+        <div class="box">
+            <div class="box_img">
+                <img src="../../assets/image/16.jpg">
+            </div>
+        </div>
+        <div class="box">
+            <div class="box_img">
+                <img src="../../assets/image/16.jpg">
+            </div>
+        </div>
+        <div class="box">
+            <div class="box_img">
+                <img src="../../assets/image/16.jpg">
+            </div>
+        </div>
+        <div class="box">
+            <div class="box_img">
+                <img src="../../assets/image/16.jpg">
+            </div>
+        </div>
+        <div class="box">
+            <div class="box_img">
+                <img src="../../assets/image/16.jpg">
+            </div>
+        </div>
+        <div class="box">
+            <div class="box_img">
+                <img src="../../assets/image/16.jpg">
+            </div>
+        </div>
+        <div class="box">
+            <div class="box_img">
+                <img src="../../assets/image/16.jpg">
+            </div>
+        </div>
+        <div class="box">
+            <div class="box_img">
+                <img src="../../assets/image/16.jpg">
+            </div>
+        </div>
+        <div class="box">
+            <div class="box_img">
+                <img src="../../assets/image/16.jpg">
+            </div>
+        </div>
+        <div class="box">
+            <div class="box_img">
+                <img src="../../assets/image/16.jpg">
+            </div>
+        </div>
+        <div class="box">
+            <div class="box_img">
+                <img src="../../assets/image/16.jpg">
+            </div>
+        </div>
+        <div class="box">
+            <div class="box_img">
+                <img src="../../assets/image/16.jpg">
+            </div>
+        </div>
+        <div class="box">
+            <div class="box_img">
+                <img src="../../assets/image/16.jpg">
+            </div>
+        </div>
+        <div class="box">
+            <div class="box_img">
+                <img src="../../assets/image/16.jpg">
+            </div>
+        </div>
+        <div class="box">
+            <div class="box_img">
+                <img src="../../assets/image/16.jpg">
+            </div>
+        </div>
+        <div class="box">
+            <div class="box_img">
+                <img src="../../assets/image/16.jpg">
+            </div>
+        </div>
+        <div class="box">
+            <div class="box_img">
+                <img src="../../assets/image/16.jpg">
+            </div>
+        </div>
+        <div class="box">
+            <div class="box_img">
+                <img src="../../assets/image/16.jpg">
+            </div>
+        </div>
+        <div class="box">
+            <div class="box_img">
+                <img src="../../assets/image/16.jpg">
+            </div>
+        </div>
+        <div class="box">
+            <div class="box_img">
+                <img src="../../assets/image/16.jpg">
+            </div>
+        </div>
+        <div class="box">
+            <div class="box_img">
+                <img src="../../assets/image/16.jpg">
+            </div>
+        </div>
+        <div class="box">
+            <div class="box_img">
+                <img src="../../assets/image/16.jpg">
+            </div>
+        </div>
+        <div class="box">
+            <div class="box_img">
+                <img src="../../assets/image/16.jpg">
+            </div>
+        </div>
+        <div class="box">
+            <div class="box_img">
+                <img src="../../assets/image/16.jpg">
+            </div>
+        </div>
+        <div class="box">
+            <div class="box_img">
+                <img src="../../assets/image/16.jpg">
+            </div>
+        </div>
+        <div class="box">
+            <div class="box_img">
+                <img src="../../assets/image/16.jpg">
+            </div>
+        </div>
+        <div class="box">
+            <div class="box_img">
+                <img src="../../assets/image/16.jpg">
+            </div>
+        </div>
+        <div class="box">
+            <div class="box_img">
+                <img src="../../assets/image/16.jpg">
+            </div>
+        </div>
+    </div>
+</body>
+</html>

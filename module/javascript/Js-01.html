@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>js第一课</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+    <meta name="render" content="webkit">
+    <link rel="icon" href="../../assets/image/panda.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="../../assets/image/panda.ico">
+
+</head>
+<body>
+        <p id="pid">hello</p>
+</body>
+    <script type="text/javascript">
+        var i = 10
+        var j = 20
+        var m = i+j
+        document.getElementById("pid").innerHTML += m
+    </script>
+    <script type="text/javascript">
+        var array = []
+        array.push(1)
+        array.push(10)
+        array.forEach(function (val,index) {
+             console.log(index+"=="+val)
+        })
+        document.getElementById("pid").innerHTML += array[1]
+        var array2  = array.filter(function (str) {
+            return str == 10
+        })
+        document.getElementById("pid").innerHTML += array2.length
+    </script>
+</html>

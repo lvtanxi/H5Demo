@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>WebWorkes使用</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+    <meta name="render" content="webkit">
+    <link rel="icon" href="../../assets/image/panda.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="../../assets/image/panda.ico">
+</head>
+<body>
+<div id="numDiv"></div>
+<br/>
+<button id="start">start</button>
+<button id="stop">stop</button>
+</body>
+<script type="text/javascript">
+    var numDiv
+    var work
+    window.onload = function () {
+        numDiv = document.getElementById("numDiv")
+
+        document.getElementById("start").onclick = function () {
+            if (work) {
+                return
+            }
+            work = new Worker("count.js")
+            work.onmessage = function (e) {
+                numDiv.innerHTML = e.data
+            }
+        }
+        document.getElementById("stop").onclick = function () {
+            if(work){
+                work.terminate()
+                work = null
+            }
+        }
+    }
+</script>
+</html>

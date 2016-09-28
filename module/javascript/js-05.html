@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JS浏览器对象</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+    <meta name="render" content="webkit">
+    <link rel="icon" href="../../assets/image/panda.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="../../assets/image/panda.ico">
+</head>
+<body>
+<button id="btn" onclick="openNewWindow()">按钮</button>
+<p id="pid"></p>
+</body>
+<script type="text/javascript">
+    var mytime
+    function openNewWindow() {
+        //window.open("js-03.html","windowName","height = 200,width = 200,top = 100 ,lef = 100,toolbar = no,menubar = no")
+        //window.close()
+        /*document.write("宽度:"+window.innerWidth+"高度"+window.innerHeight)*/
+      /*  console.log(mytime != undefined);
+        if (mytime != undefined) {
+            clearInterval(mytime)
+            mytime = undefined
+            return
+        }
+
+        mytime= setInterval(function () {
+            getTime()
+        }, 1000)*/
+    }
+    function getTime() {
+        var d = new Date()
+        document.getElementById("pid").innerHTML = d.toLocaleTimeString()
+    }
+
+</script>
+</html>

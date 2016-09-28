@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>History</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+    <meta name="render" content="webkit">
+    <link rel="icon" href="../../assets/image/panda.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="../../assets/image/panda.ico">
+</head>
+<body>
+    <a href="js-06.html">调准啊</a>
+    <button onclick="goback()">回退back</button>
+    <button onclick="goforward()">前进forward</button>
+
+    <form>
+        <input type="text" id="userName"/>
+        <button id="btn">登录</button>
+    </form>
+    <button onclick="getUrl()">获取location与screen属性</button>
+</body>
+    <script type="text/javascript">
+        function getUrl() {
+            console.log(window.location.pathname);
+            console.log(window.location.port);
+            console.log(window.location.protocol);
+            console.log(window.location.href);
+            console.log(screen.availWidth + ">>" + screen.availHeight);
+            console.log(screen.width + ">>" + screen.height);
+        }
+        function goback() {
+            history.back()
+        }
+        function goforward() {
+            history.forward()
+        }
+        document.getElementById("btn").addEventListener("click",function () {
+           var ooj= document.getElementById("userName")
+            if (ooj.value == "hello") {
+                history.go(-1)
+            }else{
+                alert("输入错误")
+            }
+        })
+    </script>
+</html>

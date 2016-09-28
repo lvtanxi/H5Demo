@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>面向对象</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+    <meta name="render" content="webkit">
+    <link rel="icon" href="../../assets/image/panda.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="../../assets/image/panda.ico">
+</head>
+<body>
+
+</body>
+    <script type="text/javascript">
+        //直接创建对象
+        var person={
+            name:"ads",
+            age:20,
+            eat:function() {
+                console.log(this.name);
+            }
+        }
+        console.log(person.name);
+        person.eat()
+        //函数构造对象
+
+        function Person() {
+
+        }
+        Person.prototype={
+            name:"ads",
+            age:20,
+            eat:function() {
+                console.log(this.name);
+            }
+        }
+
+        var pp= new Person()
+        pp.eat()
+
+    </script>
+</html>

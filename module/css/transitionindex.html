@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>动画过度</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+    <meta name="render" content="webkit">
+    <link rel="icon" href="../../assets/image/panda.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="../../assets/image/panda.ico">
+    <style type="text/css">
+        div{
+            width: 100px;
+            height: 100px;
+            background-color: aquamarine;
+            -webkit-transition: width 2s,height 2s,-webkit-transform 2s;
+            -ms-transition:width 2s,height 2s,-webkit-transform 2s;
+            -o-transition:width 2s,height 2s,-webkit-transform 2s;
+            -moz-transition:width 2s,height 2s,-webkit-transform 2s;
+            transition-delay: 1s;
+        }
+        div:hover{
+            width: 200px;
+            height: 200px;
+            transform: rotate(360deg);
+            -webkit-transform: rotate(360deg);
+            -ms-transform:rotate(360deg);
+            -o-transform:rotate(360deg);
+            -moz-transform:rotate(360deg);
+        }
+    </style>
+</head>
+<body>
+    <div>效果展示</div>
+</body>
+</html>
