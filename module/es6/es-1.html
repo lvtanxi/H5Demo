@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>es6第一课</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+    <meta name="render" content="webkit">
+    <link rel="icon" href="../../assets/image/panda.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="../../assets/image/panda.ico">
+    <script src="main.js"></script>
+</head>
+<body>
+<p>p1</p>
+<p>p2</p>
+<p>p3</p>
+<p>p4</p>
+</body>
+<script type="text/javascript">
+
+//import a from './main'
+
+
+
+    if (true) {
+        var a = 8
+        let n = 5
+        test()
+        letInFor()
+    }
+
+    function test() {
+        var a = 8
+        let n = 5
+        if (true) {
+            let n = 10
+            var a = 20
+        }
+        console.log(n);
+        console.log(a);
+        constTest()
+        stringTest()
+        lableTest()
+        numberTest()
+        mathTest()
+        arrayTest()
+        functionTest()
+        objectTest()
+        symbolTest()
+        parameterTest()
+        lambdaTest()
+        tailCallOptimization()
+        setDemo()
+        mapDemo()
+        iteratorDemo()
+        generatorDemo()
+        promiseDemo()
+        classDemo()
+        exportDemo()
+    }
+
+    function letInFor() {
+        var array = []
+        for (let i = 0; i < 10; i++) {
+            array.push(function () {
+                document.write(i + "")
+            })
+        }
+        array[6]();
+    }
+
+    function constTest() {
+        const PI = 3.141592653
+
+        if (true) {
+            const PI2 = 3.141592653
+        }
+        const C1 = {}
+        C1.a = "我是用来测试"
+        document.write(C1.a)
+    }
+
+    function stringTest() {
+        const str = "Hello world!"
+        console.log(str.includes("o"));
+        console.log(str.startsWith("He"));
+        console.log(str.endsWith("123"));
+        console.log(str.repeat(3));
+        let first = 'hubwiz';
+        let last = '汇智网';
+        console.log(`Hell ${first} ${last}`);
+        document.write(`Hello ${first} ${last}!`);
+        let raw = String.raw`Not a newline: \N`
+        console.log(`Not a newline: \n` === raw)
+    }
+
+    function lableTest() {
+        var a = 5;
+        var b = 10;
+
+        function tag(s, v1, v2) {
+            document.write(s[0]);
+            document.write(s[1]);
+            document.write(v1);
+            document.write(v2);
+
+            return "OK";
+        }
+
+        tag`Hello ${ a + b } world ${ a * b}`;
+    }
+
+    function numberTest() {
+        //isNaN 是判断是不是NaN的情况
+        console.log("isFinite");
+        console.log(Number.isFinite(15));
+        console.log(Number.isFinite(10 / 3));
+        console.log("isNaN");
+        console.log(Number.isNaN("asdf"));
+        console.log(Number.isNaN(NaN));
+        console.log(Number.isNaN(123));
+        console.log("isInteger");
+        console.log(Number.isInteger(123));
+        console.log(Number.isInteger("123"));
+        console.log(Number.isInteger(3.2));
+    }
+
+    function mathTest() {
+        console.log("trunc");
+        console.log(Math.trunc(4.1));//去除小数
+        console.log(Math.trunc("asd"));//去除小数 注意NAN
+        //Math.sign()：判断一个数到底是正数、负数、还是零。
+        //返回五种值：参数为正数，返回+1；参数为负数，返回-1；参数为0，返回0；参数为-0，返回-0;其他值，返回NaN。
+        console.log("sign");
+        console.log(Math.sign(-5));
+        console.log(Math.sign(5));
+        console.log(Math.sign(0));
+        console.log(Math.sign(-0));
+        console.log(Math.sign("asd"));
+        //Math.cbrt：计算一个数的立方根。
+        console.log("cbrt");
+        console.log(Math.cbrt(8));
+        //Math.fround：返回一个数的单精度浮点数形式。
+        console.log("fround");
+        console.log(Math.fround(8));
+        console.log(Math.fround(1.337));
+        console.log(Math.fround(NaN));
+        //Math.hypot：返回所有参数的平方和的平方根。
+        console.log("hypot");
+        console.log(Math.hypot(3, 4));//勾股定理
+        Math.hypot(3, 4, 5);     // 7.0710678118654755
+        Math.hypot();            // 0
+        Math.hypot(NaN);         // NaN
+        Math.hypot(3, 4, 'foo'); // NaN
+        Math.hypot(3, 4, '5');   // 7.0710678118654755
+        Math.hypot(-3);          // 3
+
+        //Math.expm1(x)：返回ex - 1。
+        console.log("expm1");
+        console.log(Math.expm1(3));
+    }
+
+    function arrayTest() {
+        let list = document.querySelectorAll("p")
+        Array.from(list).forEach(function (item) {
+            console.log(item.innerHTML);
+        })
+        let array = Array.from({0: "a", 1: "b", 2: "c", length: 3});
+        document.write(array);    // [ "a", "b" , "c" ]
+        let array2 = [0, 1, 2, 3, 4];
+        let newArray = Array.from(array2, x=>x * x)
+        console.log(newArray);
+
+        console.log(Array.from([1, , 2, , 3], (n)=>n || 0));
+        let wode = "asdadsfasdf"
+        console.log(wode.length + ">>" + Array.from(wode).length);
+        console.log(Array.of(1, 2, 3, 4));
+        console.log(Array(1, 2, 3, 4));
+        console.log(Array(4));
+        console.log(Array());
+
+        let findRestle = array.find((n)=>n === "a")
+        console.log(findRestle);
+
+        let findRestle2 = array.findIndex(function (val, index, arr) {
+            return val === "c"
+        })
+        console.log(findRestle2);
+        console.log([NaN].indexOf(NaN))
+        console.log([NaN].findIndex(y => Object.is(NaN, y)))
+
+
+        let arr = ['1', '2', '3'].fill(7)
+        console.log(arr);
+        let newArr = new Array(3).fill(7)
+        console.log(newArr);
+        console.log(newArr.fill(10, 1, 3));//fill感觉数组下标不是从0开始的
+
+        //遍历器
+
+        for (let index of ["a", "b"].keys()) {
+            console.log(index);
+        }
+        //这个方法不知道为什么不行
+        /*  for (let elem of ['a', 'b'].values()) {
+         document.write(elem);
+         }*/
+
+        for (let [index, elem] of ['a', 'b'].entries()) {
+            console.log(index, elem);
+        }
+
+    }
+
+    function functionTest() {
+        console.log("functionTest");
+        let Person = {
+            name: "张三",
+            hello(){
+                console.log("我的名字是", this.name);
+            },
+            setName(name = "吕檀溪"){
+                this.name = name
+                this.hello()
+            },
+            getPoint(){
+                let x = 1
+                let y = 2
+                return {x, y}
+            },
+            eat: function () {
+                console.log("我是吃货");
+            }
+        }
+        Person.hello()
+        Person.eat()
+        console.log(Person.getPoint());
+
+        //ES6允许字面量定义对象时，用方法二（表达式）作为对象的属性名，即把表达式放在方括号内。
+
+        let propKey = 'foo';
+
+        let Obj = {
+            [propKey]: true,
+            ['a' + 'bc'](){
+                console.log("asdf");
+            }
+        }
+
+        Obj.abc()
+        console.log(Obj.foo);
+
+        console.log("方法默认参数");
+
+        Person.setName()
+        Person.setName("lv")
+
+    }
+
+
+    function objectTest() {
+        console.log("Object.is");
+        console.log(Object.is(3, 3.0));
+        let obj = {}
+        let user = {
+            name: "lv",
+            eat(){
+                console.log("user eat");
+            }
+        }
+        let person = {
+            age: 12,
+            say(){
+                console.log("how are you");
+            }
+        }
+        Object.assign(obj, user, person)
+        obj.eat()
+        obj.say()
+    }
+
+    function symbolTest() {
+        console.log("symbol");
+        //ES6引入了一种新的原始数据类型Symbol，表示独一无二的ID。凡是属性名属于Symbol类型，就都是独一无二的，可以保证不会与其他属性名产生冲突。
+        let s = Symbol()
+        console.log(typeof s);
+
+        // Symbol是一个原始类型的值，不是对象。Symbol类型的值不能与其他类型的值进行运算，会报错。Symbol类型的值可以转为字符串。
+        let sym = Symbol("测试")
+        console.log(String(sym));
+    }
+
+    function parameterTest() {//很赞的地方
+        defValFunction()
+        //默认值参数
+        function defValFunction(name = "吕檀溪") {
+            console.log(`我的名字是${name}`);
+        }
+
+        //rest参数
+        function restTest(...param) {
+            let count = 0
+            for (let val of  param) {
+                count += val
+            }
+            return count
+        }
+
+        console.log(restTest(1, 2, 3, 4, 5));
+
+        let people = ['张三', '李四', '王五']
+
+
+        function paramTest(p1, p2, p3) {
+            console.log(`this is ${p1} ${p2} ${p3}`);
+        }
+
+        paramTest(...people)
+
+    }
+
+
+    function lambdaTest() {
+        console.log("箭头函数");
+        let evens = [1, 2, 3, 4, 5]
+        let newE = evens.map(v => v + 1)
+        console.log(newE);
+        newE = evens.map((v, i)=>v + i)
+        console.log(newE);
+        evens.forEach(v=> {
+            if (Object.is(0, v % 5))
+                console.log("zuihhh");
+        })
+    }
+    function tailCallOptimization() {
+        console.log("尾调用优化");//就是指某个函数的最后一步是调用另一个函数。
+        function f() {
+            let m = 1;
+            let n = 2;
+            return g(m + n);
+        }
+
+        function g(num) {
+            return num
+        }
+
+        console.log(f());
+    }
+
+    function setDemo() {
+        console.log("set集合")
+        let s = new Set();
+        [2, 3, 5, 4, 5, 2, 2].map(x => s.add(x))
+        s.add(10).add("2")
+        console.log(s);
+        s.delete(2)
+        console.log(s);
+        console.log(s.has(2));
+        var array = Array.from(s);
+        console.log(array);
+
+        for (let item of s.values()) {
+            console.log(item);
+        }
+
+        /**
+         * WeakSet和Set一样都不存储重复的元素，但有一些不同点 。
+         * WeakSet的成员只能是对象，而不能是其他类型的值。
+         *  WeakSet没有size属性，没有办法遍历它的成员
+         * @type {WeakSet}
+         */
+        let ws = new WeakSet()
+
+        let obj = {}
+        let foo = {}
+        ws.add(obj).add(foo)
+        console.log(ws, ws.has(obj));
+    }
+
+    function mapDemo() {
+        console.log("map集合")
+        let m = new Map();
+        m.set("key", "val")
+        console.log(m, m.has("key"));
+
+        let map = new Map([
+            ['F', 'no'],
+            ['T', 'yes'],
+        ]);
+
+        for (let key of map.keys()) {
+            console.log(key);
+        }
+
+        for (let value of map.values()) {
+            console.log(value);
+        }
+
+        for (let item of map.entries()) {
+            console.log(item[0], item[1]);
+        }
+        for (let [key, value] of map.entries()) {
+            console.log(key, value);
+        }
+
+        for (let [key, value] of map) {
+            console.log(key, value);
+        }
+
+        console.log([...map.keys()]);
+
+    }
+
+    function iteratorDemo() {
+        console.log("iterator");
+        let arr = ['a', 'b', 'c']
+        let iter = arr[Symbol.iterator]()
+        console.log(iter.next(), iter.next(), iter.next(), iter.next(), iter.next());
+    }
+
+    function generatorDemo() {
+        console.log("generator");
+
+        function* helloWorldGenerator() {
+            yield "hello"
+            yield  "word"
+            return "ending"
+        }
+
+        var hw = helloWorldGenerator();
+        console.log(hw.next(), hw.next(), hw.next(), hw.next());
+
+        function* f() {
+            for (let i = 0; true; i++) {
+                let reset = yield i
+                if (reset)
+                    i = -1
+            }
+        }
+
+        let g = f()
+
+        console.log(g.next(), g.next(), g.next(true));
+
+        function *foo() {
+            yield 1;
+            yield 2;
+            yield 3;
+            yield 4;
+            yield 5;
+            return 6;
+        }
+
+        for (let v of foo()) {
+            console.log((v));
+            ;
+        }
+    }
+
+    function promiseDemo() {
+        console.log("promiseDemo");//http://www.hubwiz.com/class/5594e91ac086935f4a6fb8ef
+        //创建promise
+        return
+        let promise = new Promise(function (resolve, reject) {
+            let num = Math.floor(Math.random() * 10 + 10)
+            console.log(num);
+            if (Object.is(num % 2, 0)) {
+                resolve("Stuff worked!");
+            } else {
+                reject(Error("It broke"));
+            }
+        })
+        promise.then(function (result) {
+            console.log("resolve", result);
+        }, function (result) {
+            console.log("reject", result);
+        })
+    }
+
+    function classDemo() {
+        console.log("classDemo");
+        class Point{
+            constructor(x,y){
+                this.x=x
+                this.y =y
+            }
+            toString(){
+                return `${this.x},${this.y}`;
+            }
+
+        }
+        let point = new Point(1,2);
+        point.x =12
+        console.log(point.toString());
+
+        class MyClass {
+            get prop() {
+                return 'getter';
+            }
+            set prop(value) {
+                document.write('setter: '+value);
+            }
+        }
+
+        let inst = new MyClass();
+
+        inst.prop = 123;
+
+        inst.prop
+    }
+
+    function exportDemo() {
+
+    }
+
+
+
+</script>
+
+</html>
